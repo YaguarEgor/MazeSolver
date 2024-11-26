@@ -1,15 +1,15 @@
+from Maze import Maze
 from Window import Window
-from Geometry import *
-from Cell import *
 
-win = Window(800, 600)
 
-cell1 = Cell(700, 750, 400, 425, win)
-cell1.draw()
-cell2 = Cell(100, 205, 100, 205, win)
-cell2.walls["top"] = False
-cell2.walls["right"] = False
-cell2.draw()
-cell1.draw_move(cell2, True)
-
-win.wait_for_close()
+if __name__ == "__main__":
+    num_rows = 12
+    num_cols = 15
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols 
+    cell_size_y = (screen_y - 2 * margin) / num_rows 
+    win = Window(screen_x, screen_y)
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
+    input()

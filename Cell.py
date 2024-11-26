@@ -1,7 +1,7 @@
 from Geometry import *
 
 class Cell():
-    def __init__(self, x1, x2, y1, y2, win):
+    def __init__(self, x1, x2, y1, y2, win=None):
         self.walls = {"top": True, "right": True, "bottom": True, "left": True}
         self._x1 = x1
         self._y1 = y1
@@ -10,20 +10,32 @@ class Cell():
         self._win = win
         
     def draw(self):
+        if not self._win:
+            return None
+        line = Line(Point(self._x1, self._y1), Point(self._x2, self._y1))
         if self.walls["top"]:
-            line = Line(Point(self._x1, self._y1), Point(self._x2, self._y1))
             self._win.draw_line(line, "black")
+        else:
+            self._win.draw_line(line, "white")
+        line = Line(Point(self._x2, self._y1), Point(self._x2, self._y2))
         if self.walls["right"]:
-            line = Line(Point(self._x2, self._y1), Point(self._x2, self._y2))
             self._win.draw_line(line, "black")
+        else: 
+            self._win.draw_line(line, "white")
+        line = Line(Point(self._x1, self._y2), Point(self._x2, self._y2))
         if self.walls["bottom"]:
-            line = Line(Point(self._x1, self._y2), Point(self._x2, self._y2))
             self._win.draw_line(line, "black")
+        else:
+            self._win.draw_line(line, "white")
+        line = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
         if self.walls["left"]:
-            line = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
             self._win.draw_line(line, "black")
+        else:
+            self._win.draw_line(line, "white")
     
     def draw_move(self, to_cell, undo=False):
+        if not self._win:
+            return None
         if not undo:
             fill_color = "red"
         else:
