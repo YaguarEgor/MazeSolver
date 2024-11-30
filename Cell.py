@@ -8,6 +8,7 @@ class Cell():
         self._x2 = x2
         self._y2 = y2
         self._win = win
+        self._visited = False 
         
     def draw(self):
         if not self._win:
